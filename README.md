@@ -1,9 +1,7 @@
 # tdigestbench
 [![CircleCI](https://circleci.com/gh/cep21/tdigestbench.svg)](https://circleci.com/gh/cep21/tdigestbench)
-[![GoDoc](https://godoc.org/github.com/cep21/tdigestbench?status.svg)](https://godoc.org/github.com/cep21/tdigestbench)
-[![codecov](https://codecov.io/gh/cep21/tdigestbench/branch/master/graph/badge.svg)](https://codecov.io/gh/cep21/tdigestbench)
 
-Trying out various tdigest implementations in Go.  Please let me know if you have one you want me to test.
+Trying out various streaming histogram implementations in Go.  Please let me know if you have one you want me to test.
 The ones I test are
 
 * [caio/go-tdigest](https://github.com/caio/go-tdigest)
@@ -16,7 +14,6 @@ The ones I test are
 
 ## Correctness
 `make test`
-
 
 # Testing methodology
 
