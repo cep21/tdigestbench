@@ -24,9 +24,6 @@ sequences that tend to "spike" 90% of the time.
 
 # Contributing
 
-Tell people how they can contribute.  Start with something simple and create a `CONTRIBUTING.md` file if you really
-need it.
-
 Contributions welcome!  Submit a pull request on github and make sure your code passes `make lint test`.  For
 large changes, I strongly recommend [creating an issue](https://github.com/cep21/tdigestbench/issues) on GitHub first to
 confirm your change will be accepted before writing a lot of code.  GitHub issues are also recommended, at your discretion,
