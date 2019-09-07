@@ -285,7 +285,7 @@ func correctnessTest(t *testing.T, size int, source numberSource, tdigest common
 		t.Run(fmt.Sprintf("quant=%f", quant), func(t *testing.T) {
 			res := tdigest.Quantile(quant)
 			correct := l.Quantile(quant)
-			t.Log("diff: ", math.Abs(correct-res))
+			t.Logf("%f diff", math.Abs(correct-res))
 		})
 	}
 }
