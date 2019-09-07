@@ -66,7 +66,7 @@ func (l *linearSource) Float64() float64 {
 
 // Repeats a sequence forever
 type repeatingNumberSource struct {
-	at int
+	at  int
 	seq []float64
 }
 
@@ -120,7 +120,7 @@ func (h *normalDistribution) Float64() float64 {
 
 type tailSpikeDistribution struct {
 	ratio float64
-	r *rand.Rand
+	r     *rand.Rand
 }
 
 func (h *tailSpikeDistribution) Float64() float64 {
@@ -130,7 +130,7 @@ func (h *tailSpikeDistribution) Float64() float64 {
 		// lower side of hump
 	}
 	// a spike of values between 1.5 - 2 seconds
-	return h.r.Float64() * .5 + 1.5
+	return h.r.Float64()*.5 + 1.5
 }
 
 var _ numberSource = &tailSpikeDistribution{}
@@ -160,7 +160,7 @@ var sources = []sourceRun{
 		name: "alternating",
 		source: func() numberSource {
 			return &repeatingNumberSource{
-				seq:[]float64{-1, -1, 1},
+				seq: []float64{-1, -1, 1},
 			}
 		},
 	},
@@ -173,7 +173,7 @@ var sources = []sourceRun{
 	{
 		name: "tailspike",
 		source: func() numberSource {
-			return &tailSpikeDistribution{r: rand.New(rand.NewSource(0)), ratio: .9,}
+			return &tailSpikeDistribution{r: rand.New(rand.NewSource(0)), ratio: .9}
 		},
 	},
 }
@@ -210,11 +210,11 @@ func BenchmarkTdigest_TotalSize(b *testing.B) {
 	b.ReportAllocs()
 	for _, td := range digests {
 		b.Run(fmt.Sprintf("digest_%s", td.name), func(b *testing.B) {
-			for i :=0;i<b.N;i++ {
+			for i := 0; i < b.N; i++ {
 				b.ReportAllocs()
 				d := td.digest()
 				s := sources[2].source()
-				for i:=0;i<10000;i++ {
+				for i := 0; i < 10000; i++ {
 					d.Add(s.Float64())
 				}
 			}

@@ -18,7 +18,6 @@ jobs:
       - run: go mod verify
       - run: make build test bench
       - run: make setup_ci lint
-      - run: make codecov_coverage
       - save_cache:
           key: go-mod-v1-sum-{{ checksum "go.sum" }}
           paths:
