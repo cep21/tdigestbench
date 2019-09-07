@@ -209,7 +209,7 @@ var digests = []digestRun{
 func BenchmarkTdigest_TotalSize(b *testing.B) {
 	b.ReportAllocs()
 	for _, td := range digests {
-		b.Run(fmt.Sprintf("digest_%s", td.name), func(b *testing.B) {
+		b.Run(fmt.Sprintf("digest=%s", td.name), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.ReportAllocs()
 				d := td.digest()
@@ -241,7 +241,7 @@ func addBenchmark(b *testing.B, source numberSource, tdigest commonTdigest) {
 	}
 }
 
-func BenchmarkTdigest_Quantile_1000(b *testing.B) {
+func BenchmarkTdigest_Quantile(b *testing.B) {
 	const sourceNum = 0
 	b.ReportAllocs()
 	for _, s := range digests {
