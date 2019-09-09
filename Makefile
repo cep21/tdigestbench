@@ -32,7 +32,21 @@ bench:
 
 # The exact version of CI tools should be specified in your go.mod file and referenced inside your tools.go file
 setup_ci:
+	go install github.com/cep21/benchdraw
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint
 
-draw_pictures:
+# Generate benchmarks and save them to a file for 'draw'
+benchresult:
 	go test -benchmem -run=^$$ -bench=. ./... > benchresult.txt
+
+# draw benchmarks as svg files
+draw:
+	rm -f ./pics/*.svg
+	benchdraw --filter="BenchmarkTdigest_Add" --x=source --y=allocs/op < benchresult.txt > pics/add_memory.svg
+	benchdraw --filter="BenchmarkTdigest_TotalSize" --x=digest --y=B/op < benchresult.txt > pics/total_memory.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/quant=0.900000" --x=source --y=%difference < benchresult.txt > pics/correct_all.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000" --x=digest --y=%difference < benchresult.txt > pics/correct_all_all.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=segmentio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_segment_allq.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=influxdata" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_influx_allq.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=caio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_caio_allq.svg
+	benchdraw --filter="BenchmarkTdigest_Add" --x=source < benchresult.txt > pics/add_timing.svg

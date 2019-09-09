@@ -203,7 +203,7 @@ var digests = []digestRun{
 	{
 		name: "caio",
 		digest: func() commonTdigest {
-			c, err := caiot.New(caiot.LocalRandomNumberGenerator(0))
+			c, err := caiot.New(caiot.LocalRandomNumberGenerator(0), caiot.Compression(1000))
 			if err != nil {
 				panic(err)
 			}
@@ -213,7 +213,7 @@ var digests = []digestRun{
 	{
 		name: "segmentio",
 		digest: func() commonTdigest {
-			td := segmentio.New()
+			td := segmentio.NewWithCompression(1000)
 			return &segmentTdigest{t: td}
 		},
 	},
@@ -234,7 +234,7 @@ func BenchmarkTdigest_TotalSize(b *testing.B) {
 				b.ReportAllocs()
 				d := td.digest()
 				s := sources[2].source()
-				for i := 0; i < 10000; i++ {
+				for i := 0; i < 100000; i++ {
 					d.Add(s.Float64())
 				}
 			}
@@ -265,7 +265,7 @@ func BenchmarkTdigest_Quantile(b *testing.B) {
 	const sourceNum = 0
 	b.ReportAllocs()
 	for _, s := range digests {
-		b.Run(s.name, func(b *testing.B) {
+		b.Run(fmt.Sprintf("digest=%s", s.name), func(b *testing.B) {
 			source := rand.New(rand.NewSource(sourceNum))
 			quantileBenchmark(b, source, s.digest())
 		})
@@ -305,13 +305,12 @@ func correctnessTest(b *testing.B, size int, source numberSource, tdigest common
 		b.Run(fmt.Sprintf("quant=%f", quant), func(b *testing.B) {
 			res := tdigest.Quantile(quant)
 			correct := l.Quantile(quant)
-			num := math.Min(res, correct) / math.Max(res, correct)
+			num := math.Abs(res - correct) / ((math.Abs(res) + math.Abs(correct)) / 2)
 			if math.IsNaN(num) {
 				num = 0
 			}
 			num = math.Abs(num) * 100
-			b.Log(num)
-			b.ReportMetric(num, "%correct")
+			b.ReportMetric(num, "%difference")
 		})
 	}
 }
