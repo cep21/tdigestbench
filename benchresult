@@ -1,0 +1,1654 @@
+go test -v -benchmem -run=^$ -bench=. ./...
+goos: linux
+goarch: amd64
+pkg: github.com/cep21/tdigestbench
+BenchmarkTdigest_TotalSize/digest=caio-8         	     100	  10766261 ns/op	   17920 B/op	      11 allocs/op
+BenchmarkTdigest_TotalSize/digest=segmentio-8    	     426	   2823942 ns/op	 1380190 B/op	   54778 allocs/op
+BenchmarkTdigest_TotalSize/digest=influxdata-8   	    4335	    269946 ns/op	  173513 B/op	       7 allocs/op
+BenchmarkTdigest_Add/source=linear/digest=caio-8 	 1274497	       943 ns/op	      33 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=linear/digest=segmentio-8         	 1000000	      5645 ns/op	       8 B/op	       1 allocs/op
+BenchmarkTdigest_Add/source=linear/digest=influxdata-8        	13290139	        92.1 ns/op	       1 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=rand/digest=caio-8                	 4051140	       320 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=rand/digest=segmentio-8           	 2190660	       783 ns/op	       8 B/op	       1 allocs/op
+BenchmarkTdigest_Add/source=rand/digest=influxdata-8          	 7785968	       155 ns/op	       1 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=alternating/digest=caio-8         	 1000000	      1761 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=alternating/digest=segmentio-8    	 1000000	      2940 ns/op	    1556 B/op	      10 allocs/op
+BenchmarkTdigest_Add/source=alternating/digest=influxdata-8   	34460972	        35.7 ns/op	       1 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=normal/digest=caio-8              	 3995132	       322 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=normal/digest=segmentio-8         	 2167143	       784 ns/op	       8 B/op	       1 allocs/op
+BenchmarkTdigest_Add/source=normal/digest=influxdata-8        	 7511863	       160 ns/op	       1 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=tailspike/digest=caio-8           	 3997422	       326 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Add/source=tailspike/digest=segmentio-8      	 2173755	       788 ns/op	       8 B/op	       1 allocs/op
+BenchmarkTdigest_Add/source=tailspike/digest=influxdata-8     	 7467009	       163 ns/op	       1 B/op	       0 allocs/op
+BenchmarkTdigest_Quantile/caio-8                              	128849762	         9.94 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Quantile/segmentio-8                         	131307405	         9.19 ns/op	       0 B/op	       0 allocs/op
+BenchmarkTdigest_Quantile/influxdata-8                        	100000000	        11.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.000000-8         	1000000000	         0.000051 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.100000-8         	1000000000	         0.000045 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.90099009900992
+    tdigestbench_test.go:324: 99.90099009900992
+    tdigestbench_test.go:324: 99.90099009900992
+    tdigestbench_test.go:324: 99.90099009900992
+    tdigestbench_test.go:324: 99.90099009900992
+    tdigestbench_test.go:324: 99.90099009900992
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.500000-8         	1000000000	         0.000053 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.900000-8         	1000000000	         0.000051 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.90011098779135
+    tdigestbench_test.go:324: 99.90011098779135
+    tdigestbench_test.go:324: 99.90011098779135
+    tdigestbench_test.go:324: 99.90011098779135
+    tdigestbench_test.go:324: 99.90011098779135
+    tdigestbench_test.go:324: 99.90011098779135
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.990000-8         	1000000000	         0.000049 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.90010090817356
+    tdigestbench_test.go:324: 99.90010090817356
+    tdigestbench_test.go:324: 99.90010090817356
+    tdigestbench_test.go:324: 99.90010090817356
+    tdigestbench_test.go:324: 99.90010090817356
+    tdigestbench_test.go:324: 99.90010090817356
+BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.999000-8         	1000000000	         0.000050 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.90010000000001
+    tdigestbench_test.go:324: 99.90010000000001
+    tdigestbench_test.go:324: 99.90010000000001
+    tdigestbench_test.go:324: 99.90010000000001
+    tdigestbench_test.go:324: 99.90010000000001
+    tdigestbench_test.go:324: 99.90010000000001
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.000000-8    	1000000000	         0.000050 ns/op	        50.0 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.100000-8    	1000000000	         0.000049 ns/op	        99.5 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.500000-8    	1000000000	         0.000052 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.900000-8    	1000000000	         0.000055 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.990000-8    	1000000000	         0.000049 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.999000-8    	1000000000	         0.000050 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.000000-8   	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.100000-8   	1000000000	         0.000049 ns/op	        99.5 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+    tdigestbench_test.go:324: 99.5049504950495
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.500000-8   	1000000000	         0.000051 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+    tdigestbench_test.go:324: 99.9001996007984
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.900000-8   	1000000000	         0.000055 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+    tdigestbench_test.go:324: 99.94450610432852
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.990000-8   	1000000000	         0.000051 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+    tdigestbench_test.go:324: 99.94954591321897
+BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.999000-8   	1000000000	         0.000052 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=linear/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+    tdigestbench_test.go:324: 99.95
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.000000-8           	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.100000-8           	1000000000	         0.000048 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.94855902373527
+    tdigestbench_test.go:324: 99.94855902373527
+    tdigestbench_test.go:324: 99.94855902373527
+    tdigestbench_test.go:324: 99.94855902373527
+    tdigestbench_test.go:324: 99.94855902373527
+    tdigestbench_test.go:324: 99.94855902373527
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.500000-8           	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.96378817377781
+    tdigestbench_test.go:324: 99.96378817377781
+    tdigestbench_test.go:324: 99.96378817377781
+    tdigestbench_test.go:324: 99.96378817377781
+    tdigestbench_test.go:324: 99.96378817377781
+    tdigestbench_test.go:324: 99.96378817377781
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.900000-8           	1000000000	         0.000049 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.93287390673781
+    tdigestbench_test.go:324: 99.93287390673781
+    tdigestbench_test.go:324: 99.93287390673781
+    tdigestbench_test.go:324: 99.93287390673781
+    tdigestbench_test.go:324: 99.93287390673781
+    tdigestbench_test.go:324: 99.93287390673781
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.990000-8           	1000000000	         0.000052 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.97358875036527
+    tdigestbench_test.go:324: 99.97358875036527
+    tdigestbench_test.go:324: 99.97358875036527
+    tdigestbench_test.go:324: 99.97358875036527
+    tdigestbench_test.go:324: 99.97358875036527
+    tdigestbench_test.go:324: 99.97358875036527
+BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.999000-8           	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.95813729457458
+    tdigestbench_test.go:324: 99.95813729457458
+    tdigestbench_test.go:324: 99.95813729457458
+    tdigestbench_test.go:324: 99.95813729457458
+    tdigestbench_test.go:324: 99.95813729457458
+    tdigestbench_test.go:324: 99.95813729457458
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.000000-8      	1000000000	         0.000051 ns/op	        99.6 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 99.61591771439356
+    tdigestbench_test.go:324: 99.61591771439356
+    tdigestbench_test.go:324: 99.61591771439356
+    tdigestbench_test.go:324: 99.61591771439356
+    tdigestbench_test.go:324: 99.61591771439356
+    tdigestbench_test.go:324: 99.61591771439356
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.100000-8      	1000000000	         0.000051 ns/op	        98.6 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 98.61107738641326
+    tdigestbench_test.go:324: 98.61107738641326
+    tdigestbench_test.go:324: 98.61107738641326
+    tdigestbench_test.go:324: 98.61107738641326
+    tdigestbench_test.go:324: 98.61107738641326
+    tdigestbench_test.go:324: 98.61107738641326
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.500000-8      	1000000000	         0.000049 ns/op	        99.5 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.47714888643539
+    tdigestbench_test.go:324: 99.47714888643539
+    tdigestbench_test.go:324: 99.47714888643539
+    tdigestbench_test.go:324: 99.47714888643539
+    tdigestbench_test.go:324: 99.47714888643539
+    tdigestbench_test.go:324: 99.47714888643539
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.900000-8      	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.97035660098189
+    tdigestbench_test.go:324: 99.97035660098189
+    tdigestbench_test.go:324: 99.97035660098189
+    tdigestbench_test.go:324: 99.97035660098189
+    tdigestbench_test.go:324: 99.97035660098189
+    tdigestbench_test.go:324: 99.97035660098189
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.990000-8      	1000000000	         0.000049 ns/op	        99.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.66893234708995
+    tdigestbench_test.go:324: 99.66893234708995
+    tdigestbench_test.go:324: 99.66893234708995
+    tdigestbench_test.go:324: 99.66893234708995
+    tdigestbench_test.go:324: 99.66893234708995
+    tdigestbench_test.go:324: 99.66893234708995
+BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.999000-8      	1000000000	         0.000048 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.94581859419031
+    tdigestbench_test.go:324: 99.94581859419031
+    tdigestbench_test.go:324: 99.94581859419031
+    tdigestbench_test.go:324: 99.94581859419031
+    tdigestbench_test.go:324: 99.94581859419031
+    tdigestbench_test.go:324: 99.94581859419031
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.000000-8     	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.100000-8     	1000000000	         0.000050 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.95087823625973
+    tdigestbench_test.go:324: 99.95087823625973
+    tdigestbench_test.go:324: 99.95087823625973
+    tdigestbench_test.go:324: 99.95087823625973
+    tdigestbench_test.go:324: 99.95087823625973
+    tdigestbench_test.go:324: 99.95087823625973
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.500000-8     	1000000000	         0.000048 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.94379311185409
+    tdigestbench_test.go:324: 99.94379311185409
+    tdigestbench_test.go:324: 99.94379311185409
+    tdigestbench_test.go:324: 99.94379311185409
+    tdigestbench_test.go:324: 99.94379311185409
+    tdigestbench_test.go:324: 99.94379311185409
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.900000-8     	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.97927725748148
+    tdigestbench_test.go:324: 99.97927725748148
+    tdigestbench_test.go:324: 99.97927725748148
+    tdigestbench_test.go:324: 99.97927725748148
+    tdigestbench_test.go:324: 99.97927725748148
+    tdigestbench_test.go:324: 99.97927725748148
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.990000-8     	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.98666098503297
+    tdigestbench_test.go:324: 99.98666098503297
+    tdigestbench_test.go:324: 99.98666098503297
+    tdigestbench_test.go:324: 99.98666098503297
+    tdigestbench_test.go:324: 99.98666098503297
+    tdigestbench_test.go:324: 99.98666098503297
+BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.999000-8     	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=rand/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.97904769498228
+    tdigestbench_test.go:324: 99.97904769498228
+    tdigestbench_test.go:324: 99.97904769498228
+    tdigestbench_test.go:324: 99.97904769498228
+    tdigestbench_test.go:324: 99.97904769498228
+    tdigestbench_test.go:324: 99.97904769498228
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.000000-8    	1000000000	         0.000024 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.100000-8    	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.500000-8    	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.900000-8    	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.990000-8    	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.999000-8    	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.000000-8         	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.100000-8         	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.500000-8         	1000000000	         0.000024 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.900000-8         	1000000000	         0.000022 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.77541630148991
+    tdigestbench_test.go:324: 99.77541630148991
+    tdigestbench_test.go:324: 99.77541630148991
+    tdigestbench_test.go:324: 99.77541630148991
+    tdigestbench_test.go:324: 99.77541630148991
+    tdigestbench_test.go:324: 99.77541630148991
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.990000-8         	1000000000	         0.000022 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.999000-8         	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.000000-8        	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.100000-8        	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.500000-8        	1000000000	         0.000022 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.900000-8        	1000000000	         0.000022 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.990000-8        	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.999000-8        	1000000000	         0.000023 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=alternating/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.000000-8                   	1000000000	         0.000053 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.100000-8                   	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 100.04926228016132
+    tdigestbench_test.go:324: 100.04926228016132
+    tdigestbench_test.go:324: 100.04926228016132
+    tdigestbench_test.go:324: 100.04926228016132
+    tdigestbench_test.go:324: 100.04926228016132
+    tdigestbench_test.go:324: 100.04926228016132
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.500000-8                   	1000000000	         0.000051 ns/op	       102 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 101.52974344191257
+    tdigestbench_test.go:324: 101.52974344191257
+    tdigestbench_test.go:324: 101.52974344191257
+    tdigestbench_test.go:324: 101.52974344191257
+    tdigestbench_test.go:324: 101.52974344191257
+    tdigestbench_test.go:324: 101.52974344191257
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.900000-8                   	1000000000	         0.000049 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.84532206289514
+    tdigestbench_test.go:324: 99.84532206289514
+    tdigestbench_test.go:324: 99.84532206289514
+    tdigestbench_test.go:324: 99.84532206289514
+    tdigestbench_test.go:324: 99.84532206289514
+    tdigestbench_test.go:324: 99.84532206289514
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.990000-8                   	1000000000	         0.000050 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.81833548369416
+    tdigestbench_test.go:324: 99.81833548369416
+    tdigestbench_test.go:324: 99.81833548369416
+    tdigestbench_test.go:324: 99.81833548369416
+    tdigestbench_test.go:324: 99.81833548369416
+    tdigestbench_test.go:324: 99.81833548369416
+BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.999000-8                   	1000000000	         0.000049 ns/op	        85.3 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 85.34466684913167
+    tdigestbench_test.go:324: 85.34466684913167
+    tdigestbench_test.go:324: 85.34466684913167
+    tdigestbench_test.go:324: 85.34466684913167
+    tdigestbench_test.go:324: 85.34466684913167
+    tdigestbench_test.go:324: 85.34466684913167
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.000000-8              	1000000000	         0.000049 ns/op	       101 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 101.05586370872982
+    tdigestbench_test.go:324: 101.05586370872982
+    tdigestbench_test.go:324: 101.05586370872982
+    tdigestbench_test.go:324: 101.05586370872982
+    tdigestbench_test.go:324: 101.05586370872982
+    tdigestbench_test.go:324: 101.05586370872982
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.100000-8              	1000000000	         0.000050 ns/op	       101 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 100.97085281009157
+    tdigestbench_test.go:324: 100.97085281009157
+    tdigestbench_test.go:324: 100.97085281009157
+    tdigestbench_test.go:324: 100.97085281009157
+    tdigestbench_test.go:324: 100.97085281009157
+    tdigestbench_test.go:324: 100.97085281009157
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.500000-8              	1000000000	         0.000050 ns/op	       302 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 301.6926854149161
+    tdigestbench_test.go:324: 301.6926854149161
+    tdigestbench_test.go:324: 301.6926854149161
+    tdigestbench_test.go:324: 301.6926854149161
+    tdigestbench_test.go:324: 301.6926854149161
+    tdigestbench_test.go:324: 301.6926854149161
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.900000-8              	1000000000	         0.000052 ns/op	        99.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.70470941996223
+    tdigestbench_test.go:324: 99.70470941996223
+    tdigestbench_test.go:324: 99.70470941996223
+    tdigestbench_test.go:324: 99.70470941996223
+    tdigestbench_test.go:324: 99.70470941996223
+    tdigestbench_test.go:324: 99.70470941996223
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.990000-8              	1000000000	         0.000049 ns/op	        70.3 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 70.30734554083216
+    tdigestbench_test.go:324: 70.30734554083216
+    tdigestbench_test.go:324: 70.30734554083216
+    tdigestbench_test.go:324: 70.30734554083216
+    tdigestbench_test.go:324: 70.30734554083216
+    tdigestbench_test.go:324: 70.30734554083216
+BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.999000-8              	1000000000	         0.000049 ns/op	        41.6 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 41.56556725489248
+    tdigestbench_test.go:324: 41.56556725489248
+    tdigestbench_test.go:324: 41.56556725489248
+    tdigestbench_test.go:324: 41.56556725489248
+    tdigestbench_test.go:324: 41.56556725489248
+    tdigestbench_test.go:324: 41.56556725489248
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.000000-8             	1000000000	         0.000050 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.100000-8             	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 100.3389652382334
+    tdigestbench_test.go:324: 100.3389652382334
+    tdigestbench_test.go:324: 100.3389652382334
+    tdigestbench_test.go:324: 100.3389652382334
+    tdigestbench_test.go:324: 100.3389652382334
+    tdigestbench_test.go:324: 100.3389652382334
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.500000-8             	1000000000	         0.000049 ns/op	       102 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 101.6694662181549
+    tdigestbench_test.go:324: 101.6694662181549
+    tdigestbench_test.go:324: 101.6694662181549
+    tdigestbench_test.go:324: 101.6694662181549
+    tdigestbench_test.go:324: 101.6694662181549
+    tdigestbench_test.go:324: 101.6694662181549
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.900000-8             	1000000000	         0.000049 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.92376545338601
+    tdigestbench_test.go:324: 99.92376545338601
+    tdigestbench_test.go:324: 99.92376545338601
+    tdigestbench_test.go:324: 99.92376545338601
+    tdigestbench_test.go:324: 99.92376545338601
+    tdigestbench_test.go:324: 99.92376545338601
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.990000-8             	1000000000	         0.000053 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.90825024428999
+    tdigestbench_test.go:324: 99.90825024428999
+    tdigestbench_test.go:324: 99.90825024428999
+    tdigestbench_test.go:324: 99.90825024428999
+    tdigestbench_test.go:324: 99.90825024428999
+    tdigestbench_test.go:324: 99.90825024428999
+BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.999000-8             	1000000000	         0.000051 ns/op	        92.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=normal/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 92.664998422989
+    tdigestbench_test.go:324: 92.664998422989
+    tdigestbench_test.go:324: 92.664998422989
+    tdigestbench_test.go:324: 92.664998422989
+    tdigestbench_test.go:324: 92.664998422989
+    tdigestbench_test.go:324: 92.664998422989
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.000000-8                	1000000000	         0.000051 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.100000-8                	1000000000	         0.000049 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.78375046019026
+    tdigestbench_test.go:324: 99.78375046019026
+    tdigestbench_test.go:324: 99.78375046019026
+    tdigestbench_test.go:324: 99.78375046019026
+    tdigestbench_test.go:324: 99.78375046019026
+    tdigestbench_test.go:324: 99.78375046019026
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.500000-8                	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.97333244484027
+    tdigestbench_test.go:324: 99.97333244484027
+    tdigestbench_test.go:324: 99.97333244484027
+    tdigestbench_test.go:324: 99.97333244484027
+    tdigestbench_test.go:324: 99.97333244484027
+    tdigestbench_test.go:324: 99.97333244484027
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.900000-8                	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.95691673243206
+    tdigestbench_test.go:324: 99.95691673243206
+    tdigestbench_test.go:324: 99.95691673243206
+    tdigestbench_test.go:324: 99.95691673243206
+    tdigestbench_test.go:324: 99.95691673243206
+    tdigestbench_test.go:324: 99.95691673243206
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.990000-8                	1000000000	         0.000049 ns/op	        99.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.72860762434485
+    tdigestbench_test.go:324: 99.72860762434485
+    tdigestbench_test.go:324: 99.72860762434485
+    tdigestbench_test.go:324: 99.72860762434485
+    tdigestbench_test.go:324: 99.72860762434485
+    tdigestbench_test.go:324: 99.72860762434485
+BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.999000-8                	1000000000	         0.000051 ns/op	        99.5 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.53412629023171
+    tdigestbench_test.go:324: 99.53412629023171
+    tdigestbench_test.go:324: 99.53412629023171
+    tdigestbench_test.go:324: 99.53412629023171
+    tdigestbench_test.go:324: 99.53412629023171
+    tdigestbench_test.go:324: 99.53412629023171
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.000000-8           	1000000000	         0.000048 ns/op	        87.2 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 87.15364175210988
+    tdigestbench_test.go:324: 87.15364175210988
+    tdigestbench_test.go:324: 87.15364175210988
+    tdigestbench_test.go:324: 87.15364175210988
+    tdigestbench_test.go:324: 87.15364175210988
+    tdigestbench_test.go:324: 87.15364175210988
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.100000-8           	1000000000	         0.000048 ns/op	        97.4 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 97.36860427334173
+    tdigestbench_test.go:324: 97.36860427334173
+    tdigestbench_test.go:324: 97.36860427334173
+    tdigestbench_test.go:324: 97.36860427334173
+    tdigestbench_test.go:324: 97.36860427334173
+    tdigestbench_test.go:324: 97.36860427334173
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.500000-8           	1000000000	         0.000049 ns/op	        98.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 98.8326741578708
+    tdigestbench_test.go:324: 98.8326741578708
+    tdigestbench_test.go:324: 98.8326741578708
+    tdigestbench_test.go:324: 98.8326741578708
+    tdigestbench_test.go:324: 98.8326741578708
+    tdigestbench_test.go:324: 98.8326741578708
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.900000-8           	1000000000	         0.000050 ns/op	        14.3 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 14.334340375904219
+    tdigestbench_test.go:324: 14.334340375904219
+    tdigestbench_test.go:324: 14.334340375904219
+    tdigestbench_test.go:324: 14.334340375904219
+    tdigestbench_test.go:324: 14.334340375904219
+    tdigestbench_test.go:324: 14.334340375904219
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.990000-8           	1000000000	         0.000048 ns/op	        97.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 97.65356233294341
+    tdigestbench_test.go:324: 97.65356233294341
+    tdigestbench_test.go:324: 97.65356233294341
+    tdigestbench_test.go:324: 97.65356233294341
+    tdigestbench_test.go:324: 97.65356233294341
+    tdigestbench_test.go:324: 97.65356233294341
+BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.999000-8           	1000000000	         0.000047 ns/op	        96.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 96.85378089953466
+    tdigestbench_test.go:324: 96.85378089953466
+    tdigestbench_test.go:324: 96.85378089953466
+    tdigestbench_test.go:324: 96.85378089953466
+    tdigestbench_test.go:324: 96.85378089953466
+    tdigestbench_test.go:324: 96.85378089953466
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.000000-8          	1000000000	         0.000049 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.100000-8          	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.95499965638359
+    tdigestbench_test.go:324: 99.95499965638359
+    tdigestbench_test.go:324: 99.95499965638359
+    tdigestbench_test.go:324: 99.95499965638359
+    tdigestbench_test.go:324: 99.95499965638359
+    tdigestbench_test.go:324: 99.95499965638359
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.500000-8          	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.97889674094343
+    tdigestbench_test.go:324: 99.97889674094343
+    tdigestbench_test.go:324: 99.97889674094343
+    tdigestbench_test.go:324: 99.97889674094343
+    tdigestbench_test.go:324: 99.97889674094343
+    tdigestbench_test.go:324: 99.97889674094343
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.900000-8          	1000000000	         0.000048 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.9765518821935
+    tdigestbench_test.go:324: 99.9765518821935
+    tdigestbench_test.go:324: 99.9765518821935
+    tdigestbench_test.go:324: 99.9765518821935
+    tdigestbench_test.go:324: 99.9765518821935
+    tdigestbench_test.go:324: 99.9765518821935
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.990000-8          	1000000000	         0.000053 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.86293314360852
+    tdigestbench_test.go:324: 99.86293314360852
+    tdigestbench_test.go:324: 99.86293314360852
+    tdigestbench_test.go:324: 99.86293314360852
+    tdigestbench_test.go:324: 99.86293314360852
+    tdigestbench_test.go:324: 99.86293314360852
+BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.999000-8          	1000000000	         0.000049 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000/source=tailspike/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.76682997509096
+    tdigestbench_test.go:324: 99.76682997509096
+    tdigestbench_test.go:324: 99.76682997509096
+    tdigestbench_test.go:324: 99.76682997509096
+    tdigestbench_test.go:324: 99.76682997509096
+    tdigestbench_test.go:324: 99.76682997509096
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.000000-8                	1000000000	         0.0609 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.100000-8                	1000000000	         0.0610 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+    tdigestbench_test.go:324: 99.99989695052717
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.500000-8                	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+    tdigestbench_test.go:324: 99.99990002615688
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.900000-8                	1000000000	         0.0614 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+    tdigestbench_test.go:324: 99.99990000393834
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.990000-8                	1000000000	         0.0623 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+    tdigestbench_test.go:324: 99.99990000010102
+BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.999000-8                	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+    tdigestbench_test.go:324: 99.99989164175011
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.000000-8           	1000000000	         0.0609 ns/op	        50.0 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+    tdigestbench_test.go:324: 50
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.100000-8           	1000000000	         0.0609 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.500000-8           	1000000000	         0.0646 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.900000-8           	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.990000-8           	1000000000	         0.0627 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.999000-8           	1000000000	         0.0653 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.000000-8          	1000000000	         0.0634 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.100000-8          	1000000000	         0.0641 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+    tdigestbench_test.go:324: 99.99950000499996
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.500000-8          	1000000000	         0.0643 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+    tdigestbench_test.go:324: 99.9999000002
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.900000-8          	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+    tdigestbench_test.go:324: 99.99994444450617
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.990000-8          	1000000000	         0.0610 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+    tdigestbench_test.go:324: 99.99994949500051
+BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.999000-8          	1000000000	         0.0655 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=linear/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+    tdigestbench_test.go:324: 99.99994995000006
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.000000-8                  	1000000000	         0.0623 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.100000-8                  	1000000000	         0.0609 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+    tdigestbench_test.go:324: 99.99615098255376
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.500000-8                  	1000000000	         0.0614 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+    tdigestbench_test.go:324: 99.9973817233786
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.900000-8                  	1000000000	         0.0646 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+    tdigestbench_test.go:324: 99.99973179566558
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.990000-8                  	1000000000	         0.0607 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+    tdigestbench_test.go:324: 99.99998803817886
+BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.999000-8                  	1000000000	         0.0643 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+    tdigestbench_test.go:324: 99.9996385760685
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.000000-8             	1000000000	         0.0612 ns/op	        96.4 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+    tdigestbench_test.go:324: 96.38096163949302
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.100000-8             	1000000000	         0.0609 ns/op	        99.2 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+    tdigestbench_test.go:324: 99.1756460235885
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.500000-8             	1000000000	         0.0646 ns/op	        99.3 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+    tdigestbench_test.go:324: 99.34821201759435
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.900000-8             	1000000000	         0.0608 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+    tdigestbench_test.go:324: 99.86577113466997
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.990000-8             	1000000000	         0.0646 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+    tdigestbench_test.go:324: 99.98760203442258
+BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.999000-8             	1000000000	         0.0652 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+    tdigestbench_test.go:324: 99.99811429250397
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.000000-8            	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.100000-8            	1000000000	         0.0614 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+    tdigestbench_test.go:324: 99.99197527880297
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.500000-8            	1000000000	         0.0654 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+    tdigestbench_test.go:324: 99.99616932164069
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.900000-8            	1000000000	         0.0641 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+    tdigestbench_test.go:324: 99.99991065680332
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.990000-8            	1000000000	         0.0621 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+    tdigestbench_test.go:324: 99.99998092272668
+BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.999000-8            	1000000000	         0.0623 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=rand/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+    tdigestbench_test.go:324: 99.99973130494824
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.000000-8           	1000000000	         0.0118 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.100000-8           	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.500000-8           	1000000000	         0.0117 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.900000-8           	1000000000	         0.0117 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.990000-8           	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.999000-8           	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.000000-8      	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.100000-8      	1000000000	         0.0114 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.500000-8      	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.900000-8      	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.990000-8      	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.999000-8      	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.000000-8     	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.100000-8     	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.500000-8     	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.900000-8     	1000000000	         0.0115 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.990000-8     	1000000000	         0.0117 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.999000-8     	1000000000	         0.0116 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=alternating/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.000000-8                	1000000000	         0.0617 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.100000-8                	1000000000	         0.0610 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+    tdigestbench_test.go:324: 100.00579524152403
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.500000-8                	1000000000	         0.0608 ns/op	        95.3 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+    tdigestbench_test.go:324: 95.25736675961409
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.900000-8                	1000000000	         0.0609 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+    tdigestbench_test.go:324: 99.99713442929121
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.990000-8                	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+    tdigestbench_test.go:324: 99.99880629221444
+BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.999000-8                	1000000000	         0.0644 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+    tdigestbench_test.go:324: 99.98810873787146
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.000000-8           	1000000000	         0.0630 ns/op	       102 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+    tdigestbench_test.go:324: 102.36985983764109
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.100000-8           	1000000000	         0.0641 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+    tdigestbench_test.go:324: 100.18725143895088
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.500000-8           	1000000000	         0.0625 ns/op	         2.49 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+    tdigestbench_test.go:324: 2.4925141090748766
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.900000-8           	1000000000	         0.0608 ns/op	        99.7 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+    tdigestbench_test.go:324: 99.65692572341285
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.990000-8           	1000000000	         0.0646 ns/op	        99.4 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+    tdigestbench_test.go:324: 99.3567536794544
+BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.999000-8           	1000000000	         0.0608 ns/op	        99.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+    tdigestbench_test.go:324: 99.92174417371787
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.000000-8          	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.100000-8          	1000000000	         0.0617 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+    tdigestbench_test.go:324: 100.01175859443792
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.500000-8          	1000000000	         0.0627 ns/op	        98.4 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+    tdigestbench_test.go:324: 98.38207865851672
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.900000-8          	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+    tdigestbench_test.go:324: 99.99886467530864
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.990000-8          	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+    tdigestbench_test.go:324: 99.99342290903583
+BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.999000-8          	1000000000	         0.0611 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=normal/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+    tdigestbench_test.go:324: 99.9921319562608
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.000000-8             	1000000000	         0.0609 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.100000-8             	1000000000	         0.0613 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+    tdigestbench_test.go:324: 99.99459538330188
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.500000-8             	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+    tdigestbench_test.go:324: 99.99818369893892
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.900000-8             	1000000000	         0.0611 ns/op	        57.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.900000-8
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+    tdigestbench_test.go:324: 57.824733980504725
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.990000-8             	1000000000	         0.0643 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+    tdigestbench_test.go:324: 99.9960198573602
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.999000-8             	1000000000	         0.0627 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=caio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+    tdigestbench_test.go:324: 99.99999088538331
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.000000-8        	1000000000	         0.0653 ns/op	        94.2 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.000000-8
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+    tdigestbench_test.go:324: 94.2412697464573
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.100000-8        	1000000000	         0.0612 ns/op	        99.6 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.100000-8
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+    tdigestbench_test.go:324: 99.60914050312223
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.500000-8        	1000000000	         0.0611 ns/op	        99.8 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.500000-8
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+    tdigestbench_test.go:324: 99.83432937104725
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.900000-8        	1000000000	         0.0654 ns/op	        40.4 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.900000-8
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+    tdigestbench_test.go:324: 40.43596718488021
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.990000-8        	1000000000	         0.0607 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.990000-8
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+    tdigestbench_test.go:324: 99.98688714337341
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.999000-8        	1000000000	         0.0617 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=segmentio/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+    tdigestbench_test.go:324: 99.99814392092922
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.000000-8       	1000000000	         0.0645 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.000000-8
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+    tdigestbench_test.go:324: 100
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.100000-8       	1000000000	         0.0608 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.100000-8
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+    tdigestbench_test.go:324: 99.99258090262539
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.500000-8       	1000000000	         0.0656 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.500000-8
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+    tdigestbench_test.go:324: 99.99645618134223
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.900000-8       	1000000000	         0.0608 ns/op	        74.9 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.900000-8
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+    tdigestbench_test.go:324: 74.93815261501331
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.990000-8       	1000000000	         0.0607 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.990000-8
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+    tdigestbench_test.go:324: 99.99387925643052
+BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.999000-8       	1000000000	         0.0623 ns/op	       100 %correct	       0 B/op	       0 allocs/op
+--- BENCH: BenchmarkCorrectness/size=1000000/source=tailspike/digest=influxdata/quant=0.999000-8
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+    tdigestbench_test.go:324: 99.99866330245537
+PASS
+ok  	github.com/cep21/tdigestbench	96.340s

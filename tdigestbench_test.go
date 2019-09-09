@@ -9,6 +9,7 @@ import (
 	"time"
 
 	caiot "github.com/caio/go-tdigest"
+	influx "github.com/influxdata/tdigest"
 	segmentio "github.com/segmentio/tdigest"
 )
 
@@ -110,6 +111,18 @@ func (s *segmentTdigest) Add(f float64) {
 	s.t.Add(f, 1)
 }
 
+type influxTdigest struct {
+	t *influx.TDigest
+}
+
+func (s *influxTdigest) Quantile(f float64) float64 {
+	return s.t.Quantile(f)
+}
+
+func (s *influxTdigest) Add(f float64) {
+	s.t.Add(f, 1)
+}
+
 type normalDistribution struct {
 	r *rand.Rand
 }
@@ -178,7 +191,7 @@ var sources = []sourceRun{
 	},
 }
 
-var sizes = []int{1000, 100000}
+var sizes = []int{1000, 1_000_000}
 var quantiles = []float64{0, .1, .5, .9, .99, .999}
 
 type digestRun struct {
@@ -202,6 +215,13 @@ var digests = []digestRun{
 		digest: func() commonTdigest {
 			td := segmentio.New()
 			return &segmentTdigest{t: td}
+		},
+	},
+	{
+		name: "influxdata",
+		digest: func() commonTdigest {
+			td := influx.New()
+			return &influxTdigest{t: td}
 		},
 	},
 }
@@ -258,14 +278,14 @@ func quantileBenchmark(b *testing.B, source numberSource, tdigest commonTdigest)
 	}
 }
 
-func TestCorrectness(t *testing.T) {
+func BenchmarkCorrectness(b *testing.B) {
 	for _, size := range sizes {
-		t.Run(fmt.Sprintf("size=%d", size), func(t *testing.T) {
+		b.Run(fmt.Sprintf("size=%d", size), func(b *testing.B) {
 			for _, source := range sources {
-				t.Run(fmt.Sprintf("source=%s", source.name), func(t *testing.T) {
+				b.Run(fmt.Sprintf("source=%s", source.name), func(b *testing.B) {
 					for _, td := range digests {
-						t.Run(fmt.Sprintf("digest=%s", td.name), func(t *testing.T) {
-							correctnessTest(t, size, source.source(), td.digest(), quantiles)
+						b.Run(fmt.Sprintf("digest=%s", td.name), func(b *testing.B) {
+							correctnessTest(b, size, source.source(), td.digest(), quantiles)
 						})
 					}
 				})
@@ -274,7 +294,7 @@ func TestCorrectness(t *testing.T) {
 	}
 }
 
-func correctnessTest(t *testing.T, size int, source numberSource, tdigest commonTdigest, quants []float64) {
+func correctnessTest(b *testing.B, size int, source numberSource, tdigest commonTdigest, quants []float64) {
 	l := &allwaysCorrectQuantile{}
 	for i := 0; i < size; i++ {
 		s := source.Float64()
@@ -282,10 +302,16 @@ func correctnessTest(t *testing.T, size int, source numberSource, tdigest common
 		l.Add(s)
 	}
 	for _, quant := range quants {
-		t.Run(fmt.Sprintf("quant=%f", quant), func(t *testing.T) {
+		b.Run(fmt.Sprintf("quant=%f", quant), func(b *testing.B) {
 			res := tdigest.Quantile(quant)
 			correct := l.Quantile(quant)
-			t.Logf("%f diff", math.Abs(correct-res))
+			num := math.Min(res, correct) / math.Max(res, correct)
+			if math.IsNaN(num) {
+				num = 0
+			}
+			num = math.Abs(num) * 100
+			b.Log(num)
+			b.ReportMetric(num, "%correct")
 		})
 	}
 }

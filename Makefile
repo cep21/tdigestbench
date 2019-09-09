@@ -34,20 +34,5 @@ bench:
 setup_ci:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint
 
-## ---- Delete this part after cloning ---- ####
-# Use like `make setup_repo OWNER=example REPO=myproject`
-setup_repo:
-ifndef OWNER
-	$(error OWNER is undefined)
-endif
-ifndef REPO
-	$(error REPO is undefined)
-endif
-	git grep -l 'cep21/tdigestbench' | xargs perl -i -pe"s#cep21/tdigestbench#$(OWNER)/$(REPO)#g"
-	git grep -l 'tdigestbench' | xargs perl -i -pe"s#tdigestbench#$(REPO)#g"
-	mv tdigestbench.go $(REPO).go
-	mv tdigestbench_example_test.go $(REPO)_example_test.go
-	mv tdigestbench_test.go $(REPO)_test.go
-	go test ./...
-	@echo "CircleCI URL: https://circleci.com/add-projects/gh/$(OWNER)"
-	@echo "Codecov URL:  https://codecov.io/gh/$(OWNER)/+"
+draw_pictures:
+	go test -benchmem -run=^$$ -bench=. ./... > benchresult.txt
