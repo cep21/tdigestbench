@@ -305,7 +305,7 @@ func correctnessTest(b *testing.B, size int, source numberSource, tdigest common
 		b.Run(fmt.Sprintf("quant=%f", quant), func(b *testing.B) {
 			res := tdigest.Quantile(quant)
 			correct := l.Quantile(quant)
-			num := math.Abs(res - correct) / ((math.Abs(res) + math.Abs(correct)) / 2)
+			num := math.Abs(res-correct) / ((math.Abs(res) + math.Abs(correct)) / 2)
 			if math.IsNaN(num) {
 				num = 0
 			}
