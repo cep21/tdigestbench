@@ -5,8 +5,8 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 <g transform="scale(1, -1) translate(0, -370)">
 <path d="M0,0L740,0L740,370L0,370Z" style="fill:#FFFFFF" />
-<text x="237.76" y="-358.45" transform="scale(1, -1)"
-	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">BenchmarkCorrectness/size=1000000/quant=0.900000</text>
+<text x="231.76" y="-358.45" transform="scale(1, -1)"
+	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">BenchmarkCorrectness/size=1000000/quantile=0.900000</text>
 <text x="380.86" y="-3.8613" transform="scale(1, -1)"
 	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">source</text>
 <text x="86.666" y="-15.602" transform="scale(1, -1)"

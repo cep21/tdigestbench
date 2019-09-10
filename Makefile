@@ -28,7 +28,7 @@ lint:
 
 # Bench runs benchmarks.  The ^$ means it runs no tests, only benchmarks
 bench:
-	go test -v -benchmem -run=^$$ -bench=. ./...
+	go test -v -run=^$$ -bench=. ./...
 
 # The exact version of CI tools should be specified in your go.mod file and referenced inside your tools.go file
 setup_ci:
@@ -37,19 +37,22 @@ setup_ci:
 
 # Generate benchmarks and save them to a file for 'draw'
 benchresult:
-	go test -benchmem -run=^$$ -bench=. ./... > benchresult.txt
+	go test -run=^$$ -bench=. ./... > benchresult.txt
 
 # draw benchmarks as svg files
 draw:
 	rm -f ./pics/*.svg
-	benchdraw --filter="BenchmarkTdigest_Add" --x=source --y=allocs/op < benchresult.txt > pics/add_memory.svg
-	benchdraw --filter="BenchmarkTdigest_TotalSize" --x=digest --y=B/op < benchresult.txt > pics/total_memory.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/quant=0.900000" --x=source --y=%difference < benchresult.txt > pics/correct_all.svg
+	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=digest --y=allocs/op < benchresult.txt > pics/add_memory.svg
+	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=digest --y=B/op < benchresult.txt > pics/total_memory.svg
+	benchdraw --filter="BenchmarkTdigest_Add/size=1000000/source=exponential" --x=digest --y=B/op < benchresult.txt > pics/total_memory_exponential.svg
+	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=source < benchresult.txt > pics/add_timing.svg
+
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.900000" --x=source --y=%difference < benchresult.txt > pics/correct_all.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.990000" --x=source --y=%difference < benchresult.txt > pics/correct_all_99.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000" --x=digest --y=%difference < benchresult.txt > pics/correct_all_all.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=segmentio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_segment_allq.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=influxdata" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_influx_allq.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=caio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_caio_allq.svg
-	benchdraw --filter="BenchmarkTdigest_Add" --x=source < benchresult.txt > pics/add_timing.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential" --v=3 --x=digest --y=%difference < benchresult.txt > pics/exponential_source_all.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=influxdata" --v=3 --x=quant --y=%difference < benchresult.txt > pics/exponential_source_influx.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=caio" --v=3 --x=quant --y=%difference < benchresult.txt > pics/exponential_source_caio.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=influxdata" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/exponential_source_influx.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=caio" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/exponential_source_caio.svg
