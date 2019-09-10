@@ -123,12 +123,12 @@ func (s *influxTdigest) Add(f float64) {
 	s.t.Add(f, 1)
 }
 
-type normalDistribution struct {
+type exponentialDistribution struct {
 	r *rand.Rand
 }
 
-func (h *normalDistribution) Float64() float64 {
-	return h.r.NormFloat64()
+func (h *exponentialDistribution) Float64() float64 {
+	return h.r.ExpFloat64()
 }
 
 type tailSpikeDistribution struct {
@@ -147,7 +147,7 @@ func (h *tailSpikeDistribution) Float64() float64 {
 }
 
 var _ numberSource = &tailSpikeDistribution{}
-var _ numberSource = &normalDistribution{}
+var _ numberSource = &exponentialDistribution{}
 var _ commonTdigest = &caioTdigest{}
 var _ commonTdigest = &segmentTdigest{}
 
@@ -178,9 +178,9 @@ var sources = []sourceRun{
 		},
 	},
 	{
-		name: "normal",
+		name: "exponential",
 		source: func() numberSource {
-			return &normalDistribution{r: rand.New(rand.NewSource(0))}
+			return &exponentialDistribution{r: rand.New(rand.NewSource(0))}
 		},
 	},
 	{

@@ -50,3 +50,6 @@ draw:
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=influxdata" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_influx_allq.svg
 	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=caio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_caio_allq.svg
 	benchdraw --filter="BenchmarkTdigest_Add" --x=source < benchresult.txt > pics/add_timing.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential" --v=3 --x=digest --y=%difference < benchresult.txt > pics/exponential_source_all.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=influxdata" --v=3 --x=quant --y=%difference < benchresult.txt > pics/exponential_source_influx.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=caio" --v=3 --x=quant --y=%difference < benchresult.txt > pics/exponential_source_caio.svg

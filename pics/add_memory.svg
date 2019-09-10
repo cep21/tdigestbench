@@ -15,8 +15,8 @@
 	style="font-family:Times;font-weight:normal;font-style:normal;font-size:10px">rand</text>
 <text x="370.14" y="-15.602" transform="scale(1, -1)"
 	style="font-family:Times;font-weight:normal;font-style:normal;font-size:10px">alternating</text>
-<text x="529.1" y="-15.602" transform="scale(1, -1)"
-	style="font-family:Times;font-weight:normal;font-style:normal;font-size:10px">normal</text>
+<text x="519.94" y="-15.602" transform="scale(1, -1)"
+	style="font-family:Times;font-weight:normal;font-style:normal;font-size:10px">exponential</text>
 <text x="678.06" y="-15.602" transform="scale(1, -1)"
 	style="font-family:Times;font-weight:normal;font-style:normal;font-size:10px">tailspike</text>
 <g transform="rotate(90)">
