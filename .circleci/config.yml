@@ -16,8 +16,9 @@ jobs:
             - go-mod-v1-sum-
       - run: go mod download
       - run: go mod verify
-      - run: make build test bench
+      - run: make build test
       - run: make setup_ci lint
+      - run: make benchresult draw
       - save_cache:
           key: go-mod-v1-sum-{{ checksum "go.sum" }}
           paths:
