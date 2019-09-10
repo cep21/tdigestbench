@@ -244,7 +244,7 @@ var digests = []digestRun{
 
 func numberArrayFromSource(s numberSource, size int) []float64 {
 	ret := make([]float64, size)
-	for i :=0;i<size;i++ {
+	for i := 0; i < size; i++ {
 		ret[i] = s.Float64()
 	}
 	return ret
@@ -287,7 +287,7 @@ func BenchmarkTdigest_TotalSize(b *testing.B) {
 						b.Run(fmt.Sprintf("digest=%s", td.name), func(b *testing.B) {
 							b.ReportAllocs()
 							b.ResetTimer()
-							for i :=0;i<b.N;i++ {
+							for i := 0; i < b.N; i++ {
 								digestImpl := td.digest()
 								addNumbersToQuantile(digestImpl, nums)
 								for _, q := range quantiles {
