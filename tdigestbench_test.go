@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"os"
 	"sort"
 	"testing"
 	"time"
@@ -196,6 +197,13 @@ var sources = []sourceRun{
 	},
 }
 
+func init() {
+	if os.Getenv("CIRCLECI") != "" {
+		// Otherwise our CI environment just takes too long :(
+		sizes = []int{1000}
+	}
+}
+
 var sizes = []int{1000, 1_000_000}
 var quantiles = []float64{.1, .5, .9, .99, .999}
 
@@ -248,9 +256,28 @@ func addNumbersToQuantile(ts commonTdigest, nums []float64) {
 	}
 }
 
-// Benchmark creating a digest of a static size b.N times, then calling a single set of quantiles on it (we call
-// quantiles just to make sure the digest is used.
+// Benchmark creating a digest of size b.N, then calling a single set of quantiles on it (we call quantiles just to make sure the digest is used)
 func BenchmarkTdigest_Add(b *testing.B) {
+	for _, source := range sources {
+		b.Run(fmt.Sprintf("source=%s", source.name), func(b *testing.B) {
+			for _, td := range digests {
+				b.Run(fmt.Sprintf("digest=%s", td.name), func(b *testing.B) {
+					nums := numberArrayFromSource(source.source(), b.N)
+					b.ReportAllocs()
+					b.ResetTimer()
+					digestImpl := td.digest()
+					addNumbersToQuantile(digestImpl, nums)
+					for _, q := range quantiles {
+						digestImpl.Quantile(q)
+					}
+				})
+			}
+		})
+	}
+}
+
+// Benchmark Total is the benchmark of a single item with a static size, tested b.N times.
+func BenchmarkTdigest_TotalSize(b *testing.B) {
 	for _, size := range sizes {
 		b.Run(fmt.Sprintf("size=%d", size), func(b *testing.B) {
 			for _, source := range sources {
@@ -288,8 +315,8 @@ func BenchmarkTdigest_Quantile(b *testing.B) {
 							addNumbersToQuantile(digestImpl, nums)
 							b.ReportAllocs()
 							b.ResetTimer()
-							for _, q := range quantiles {
-								for i := 0; i < b.N; i++ {
+							for i := 0; i < b.N; i++ {
+								for _, q := range quantiles {
 									digestImpl.Quantile(q)
 								}
 							}

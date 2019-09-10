@@ -5,8 +5,8 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 <g transform="scale(1, -1) translate(0, -190)">
 <path d="M0,0L380,0L380,190L0,190Z" style="fill:#FFFFFF" />
-<text x="46.935" y="-178.45" transform="scale(1, -1)"
-	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">BenchmarkTdigest_Add/size=1000000/source=exponential</text>
+<text x="34.694" y="-178.45" transform="scale(1, -1)"
+	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">BenchmarkTdigest_TotalSize/size=1000000/source=exponential</text>
 <text x="208.03" y="-3.8613" transform="scale(1, -1)"
 	style="font-family:Times;font-weight:normal;font-style:normal;font-size:12px">digest</text>
 <text x="76.666" y="-15.602" transform="scale(1, -1)"

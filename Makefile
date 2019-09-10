@@ -42,17 +42,20 @@ benchresult:
 # draw benchmarks as svg files
 draw:
 	rm -f ./pics/*.svg
-	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=digest --y=allocs/op < benchresult.txt > pics/add_memory.svg
-	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=digest --y=B/op < benchresult.txt > pics/total_memory.svg
-	benchdraw --filter="BenchmarkTdigest_Add/size=1000000/source=exponential" --x=digest --y=B/op < benchresult.txt > pics/total_memory_exponential.svg
-	benchdraw --filter="BenchmarkTdigest_Add/size=1000000" --x=source < benchresult.txt > pics/add_timing.svg
+	benchdraw --filter="BenchmarkTdigest_Add" --x=digest --y=allocs/op < benchresult.txt > pics/add_allocs.svg
+	benchdraw --filter="BenchmarkTdigest_Add/source=exponential" --x=digest --y=B/op < benchresult.txt > pics/add_exponential_bops.svg
+	benchdraw --filter="BenchmarkTdigest_Add" --x=source < benchresult.txt > pics/add_nsop.svg
 
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.900000" --x=source --y=%difference < benchresult.txt > pics/correct_all.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.990000" --x=source --y=%difference < benchresult.txt > pics/correct_all_99.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000" --x=digest --y=%difference < benchresult.txt > pics/correct_all_all.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=segmentio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_segment_allq.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=influxdata" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_influx_allq.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=caio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_caio_allq.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential" --v=3 --x=digest --y=%difference < benchresult.txt > pics/exponential_source_all.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=influxdata" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/exponential_source_influx.svg
-	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=caio" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/exponential_source_caio.svg
+	benchdraw --filter="BenchmarkTdigest_TotalSize/size=1000000" --x=digest --y=B/op < benchresult.txt > pics/totalsize_bops.svg
+	benchdraw --filter="BenchmarkTdigest_TotalSize/size=1000000/source=exponential" --x=digest --y=B/op < benchresult.txt > pics/totalsize_exponential_bops.svg
+
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.900000" --x=source --y=%difference < benchresult.txt > pics/correct.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/quantile=0.990000" --x=source --y=%difference < benchresult.txt > pics/correct_99.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000" --x=digest --y=%difference < benchresult.txt > pics/correct_allquant.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=segmentio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_segment.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=influxdata" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_influx.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/digest=caio" --v=3 --x=source --y=%difference < benchresult.txt > pics/correct_caio.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential" --v=3 --x=digest --y=%difference < benchresult.txt > pics/correct_exponential_all.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=influxdata" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/correct_exponential_influxdb.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=caio" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/correct_exponential_caio.svg
+	benchdraw --filter="BenchmarkCorrectness/size=1000000/source=exponential/digest=segmentio" --v=3 --x=quantile --y=%difference < benchresult.txt > pics/correct_exponential_segmentio.svg
